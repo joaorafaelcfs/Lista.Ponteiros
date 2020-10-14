@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main (void){
+	int i=3,j=5;
+	int *p, *q, a, b, c;
+	p = &i;
+	q = &j;	
+
+	p == &i;
+	printf("p = %d \n", *p);
+	a = *p - *q;
+	printf("*p - *q = %d \n", a);
+	b = **&p;
+	printf(" **&p = %d \n", b);
+	c = 3 - *p/(*q) + 7;
+	printf("[3 - *p/(*q) + 7] = %d \n", c);  
+	
+	return 0;
+}
+
+
+-------------- RESULTADO --------------
+
+p = 3
+*p - *q = -2
+ **&p = 3
+[3 - *p/(*q) + 7] = 10
