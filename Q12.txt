@@ -1,0 +1,29 @@
+O QUE É UM PONTEIRO PARA UMA FUNÇÃO?
+	O uso de ponteiros para funções em C serve principalmente para definir, em tempo de execução, qual função será executada, sem a necessidade de escrever o nome da função, de forma explícita naquele ponto do código.
+
+EXEMPLO:
+
+#include <stdio.h>
+
+void inc (int *n)
+{
+   (*n)++ ;
+}
+
+int main ()
+{
+   void (*fp) (int *) ;         // function pointer
+   fp = inc ;                   // fp points to inc
+
+   int a = 0 ;
+
+   printf ("a = %d\n", a) ;
+   inc(&a) ;                    // normal call
+
+   printf ("a = %d\n", a) ;
+   fp(&a) ;                     // call using the function pointer
+
+   printf ("a = %d\n", a) ;
+
+   return (0) ;
+}

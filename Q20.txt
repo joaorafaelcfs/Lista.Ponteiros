@@ -1,0 +1,55 @@
+#include "gc.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
+int main() {
+  	int i,n;
+	double t[3];
+	clock_t Ticks[4];
+	printf("Digite qnts numeros: \n");
+	scanf("%d", &n);
+	Ticks[0] = clock();  // cronometro inicia		
+	int *p = (int *) malloc(n*sizeof(int)); //Faz a alocação
+	for( i = 0 ; i < n; i++ ) {
+   	  	p[i] = rand()%100;
+      		printf("%d ", *(p+i));
+   	}
+	qsort(p, n, sizeof(int), cmpfunc);
+   	printf(" \nColocando em ordem crescente ... \n");
+   	for( i = 0 ; i < n; i++ ) {   
+      		printf("%d ", *(p+i));
+   	}
+	printf("\n");
+	free(p); //Desaloca
+	Ticks[1] = clock(); // cronometro para
+	double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+    	t[0] = Tempo;
+    	printf("\nTempo gasto: %g ms. \n\n\n", t[0]);
+	
+	Ticks[1] = clock();  // cronometro inicia
+	
+	int *q = (int *) GC_MALLOC(n*sizeof(int)); // Faz a alocação
+	printf("\nq0 = %d\n ", *(q+1));
+	for( i = 0 ; i < n; i++ ) {
+   	  	q[i] = rand()%100;
+      		printf("%d ", *(q+i));
+   	}
+	qsort(q, n, sizeof(int), cmpfunc);
+   	printf(" \nColocando em ordem crescente ... \n");
+   	for( i = 0 ; i < n; i++ ) {   
+      		printf("%d ", *(q+i));
+   	}
+	GC_FREE(q); // Desaloca
+	printf("\n");
+	Ticks[2] = clock(); // cronometro para
+	Tempo = (Ticks[2] - Ticks[1]) * 1000.0 / CLOCKS_PER_SEC;
+    	t[1] = Tempo;
+    	printf("\nTempo gasto(usando LibGC): %g ms. \n", t[1]);
+
+  return 0;
+}

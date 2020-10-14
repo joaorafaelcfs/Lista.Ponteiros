@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main () {
+   int n, i,j, tmp;   
+   printf("Digite qnts numeros: \n");
+   scanf("%d", &n);
+   int p[100];
+   
+   for( i = 0 ; i < n; i++ ) {
+   	  p[i] = rand()%100;
+      printf("%d ", p[i]);
+   }
+	printf(" \n Colocando em ordem crescente ... \n");
+	for (i = 0; i<n; i++){
+		for (j=i; j<n; j++){
+			if (p[i] > p[j]){
+				tmp = p[i];
+				p[i] = p[j];
+				p[j] = tmp;
+			}			
+		}if (i == n-1){
+			printf("%d", p[i]);	
+		} else {
+			printf("%d - ", p[i]);		
+		}					
+	}	  
+    return(0);
+}

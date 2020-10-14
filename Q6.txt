@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void){
+  int pulo[6] = {1,2,3,4,5,6};
+  int *f;
+  int i3, i5; 
+  i3 = *pulo + 2;  // essa expressão que referencia o 3° elemento
+  i5 = *pulo + 4; //  essa expressão que referencia o 5° elemento
+  printf("Terceiro elemento = %d \n", i3);
+  printf("Quinto elemento   = %d \n", i5);
+  return 0;
+}
+
+-------- RESULTADO ----------
+Terceiro elemento = 3
+Quinto elemento   = 5

@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+int cmpfunc2 (const void * a, const void * b) {
+   return ( *(double*)a - *(double*)b );
+}
+
+int main(void)
+{
+	int n, i, tmp, j ;
+	double t[3], x[3]; 	   
+	printf("Digite qnts numeros: \n");
+	scanf("%d", &n);
+	clock_t Ticks[6];
+	
+	int *p1;	
+	int p2[10000];
+	   
+	
+	// CÓDIGO USANDO PONTEIRO E QSORT
+	printf(" \n\n ----------- CODIGO USANDO PONTEIRO E QSORT ----------- \n");
+	Ticks[0] = clock();  // cronomêtro inicia
+		
+   	p1 = (int *) malloc(n*sizeof(int));
+   	printf(" \n--- GERANDO NUMEROS ALEATORIOS --- \n");
+	for( i = 0 ; i < n; i++ ) {
+   		p1[i] = rand()%1000;   		
+    	printf("%d ", *(p1+i));
+   	}
+   	
+   	qsort(p1, n, sizeof(int), cmpfunc);
+
+   	for( i = 0 ; i < n; i++ ) {   
+      	printf("%d ", *(p1+i));
+   	}	
+   	free (p1);   	
+    Ticks[1] = clock(); // cronomêtro para
+    
+    double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+    t[0] = Tempo;
+    x[0] = Tempo;
+    printf("\nTempo gasto: %g ms. \n", t[0]);
+    
+	// CÓDIGO USANDO QSORT
+	printf(" \n --------------- CODIGO USANDO QSORT --------------- \n");
+	Ticks[2] = clock();  // cronomêtro inicia
+	printf(" \n--- GERANDO NUMEROS ALEATORIOS --- \n");
+	for( i = 0 ; i < n; i++ ) {
+   		p2[i] = rand()%1000;   		
+    	printf("%d ", p2[i]);
+   	}
+	      	
+   	qsort(p2, n, sizeof(int), cmpfunc);
+   	
+   	for( i = 0 ; i < n; i++ ) {   
+      printf("%d ", p2[i]);
+   	}
+   	
+   	Ticks[3] = clock(); // cronomêtro para
+    
+    Tempo = (Ticks[3] - Ticks[2]) * 1000.0 / CLOCKS_PER_SEC;
+    t[1]=Tempo;
+    x[1] = Tempo;
+    printf("\nTempo gasto: %g ms. \n", t[1]);
+    
+    // CÓDIGO SEM QSORT
+	printf(" \n ---------------- CODIGO SEM QSORT ---------------- \n");
+	
+    Ticks[4] = clock();  // cronomêtro inicia
+    
+    printf(" \n--- GERANDO NUMEROS ALEATORIOS --- \n");
+	for( i = 0 ; i < n; i++ ) {
+   		p2[i] = rand()%1000;   		
+    	printf("%d ", p2[i]);
+   	}
+    
+	for (i = 0; i<n; i++){
+		for (j=i; j<n; j++){
+			if (p2[i] > p2[j]){
+				tmp = p2[i];
+				p2[i] = p2[j];
+				p2[j] = tmp;
+			}			
+		}					
+	}
+	
+	for( i = 0 ; i < n; i++ ) {   
+      	printf("%d ", p2[i]);
+   	}
+	
+	Ticks[5] = clock(); // cronomêtro para
+	Tempo = (Ticks[5] - Ticks[4]) * 1000.0 / CLOCKS_PER_SEC;
+	t[2]=Tempo;
+	x[2] = Tempo;
+    printf("\nTempo gasto: %g ms. \n", t[2]);    
+    
+    qsort(t, 3, sizeof(double), cmpfunc2);
+    printf("\nOrdenando o tempo que cada funcao eh executada\n");
+    int a,b,c; a = b = c = 1;
+    for( i = 0 ; i < 3; i++ ) { 
+		if (x[0] == t[i] && a != 0){
+			a=0;
+			printf(" %dº = %g ms (codigo com ponteiro e qsort)\n", i+1, t[i]);
+		} else if (x[1] == t[i] && b !=0){
+			b=0;
+			printf(" %dº = %g ms (codigo com qsort)\n", i+1, t[i]);
+		} else if (x[2] == t[i] && c !=0){
+			c=0;
+			printf(" %dº = %g ms (codigo sem qsort)\n", i+1, t[i]);
+		}
+   	}
+    return 0;
+}

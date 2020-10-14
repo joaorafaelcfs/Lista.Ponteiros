@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main (void){
+	int i = 212, j = 10, *p, *q, x=30;
+	p = i; ERRADO-- DEVERIA SER: p = &i;
+	q = &j; // CERTO
+	p = &x;	
+	p = &*&i; // CERTO	
+	i = (*&)j; ERRADO -- DEVERIA SER: i = j ou *&j;
+	i = *&j; //CERTO	
+	i = *&*&j; // CERTO	
+	q = *p ; ERRADO -- DEVERIA SER q = p ou *q = *p;
+	i = (*p)++ + *q; // CERTO
+	return 0;
+}

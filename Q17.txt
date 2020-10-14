@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void vetor (char vet1[10], char vet2[10],char vet3[10], int n){
+	int i;	
+	int v1[n], v2[n], v3[n];
+	printf("Digite os valores do vetor -> %s: ", vet1);		
+	for (i=0; i<n; i++){
+    scanf ("%d", &v1[i]);    
+  	} 
+	printf("Digite os valores do vetor -> %s: ", vet2);	
+	for (i=0; i<n; i++){
+    scanf ("%d", &v2[i]);    
+  	}
+	  	   
+	for (i=0;i<n;i++){
+		v3[i] = v1[i] + v2[i];
+	}
+	printf(" \n ----- Temos que: ----- \n");	
+	printf("%s: {", vet1);
+	for (i=0;i<n;i++){
+		if (i == n-1){
+			printf("%d", v1[i]);
+		} else {
+			printf("%d, ", v1[i]);
+		}		
+	}
+	printf("} \n");
+	printf("%s: {", vet2);
+	for (i=0;i<n;i++){		
+		if (i == n-1){
+			printf("%d", v2[i]);
+		} else {
+			printf("%d, ", v2[i]);
+		}		
+	}
+	printf("} \n");
+	printf("%s: {", vet3);
+	for (i=0;i<n;i++){
+		if (i == n-1){
+			printf("%d", v3[i]);
+		} else {
+			printf("%d, ", v3[i]);
+		}		
+	}
+	printf("} \n");
+  }	
+
+int main (){	
+
+	int n, i, valor;
+	char nome1[10], nome2[10], nome3[10];
+	puts ("Nome do seu vetor 1: ");
+	scanf("%[^\n]s", nome1);
+	setbuf(stdin, NULL);  
+	puts ("Nome do seu vetor 2: ");
+	scanf("%[^\n]s", nome2);
+	setbuf(stdin, NULL); 
+	puts ("Nome do seu vetor 3: ");
+	scanf("%[^\n]s", nome3);
+	setbuf(stdin, NULL);			
+	printf("Quantos elementos vc quer que tenha os seus vetores? ");
+	scanf("%d", &n);		
+	vetor (nome1 , nome2 , nome3, n);	
+
+	return 0;
+}

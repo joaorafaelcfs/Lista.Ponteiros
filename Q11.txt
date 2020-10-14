@@ -1,0 +1,8 @@
+Temos que:
+
+aloha = "value"; // inválido
+printf("%f", aloha); // válido
+coisas[4][4] = aloha[3]; // inválido
+coisas[5] = aloha; // inválido
+pf = value; // inválido
+pf = aloha; // válido

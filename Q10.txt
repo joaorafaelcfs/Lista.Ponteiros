@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+int main(){
+	char a[4] = "joao", *pa = a;
+  	pa = 4092;  
+  	int *b[4] = {1, 2, 3, 4}, *pb = b;
+  	pb = 4092;
+  	float c[4] = {1.2, 2.3, 3.1, 3.3}, *pc = c;
+  	pc = 4092;
+  	double d[4] = {3219, 100.3, 2013.233, 3000}, *pd = d;
+  	pd = 4092;
+ 	int i;
+  
+	for(i=0;i<4;i++){  	
+    	printf(" Endereco [char] = %d - Valor [char] = %c",(pa+i),*(a+i));
+    	printf("\n");
+  	}
+  	printf("\n");
+  
+	for(i=0;i<4;i++){  	
+    	printf(" Endereco [int] = %d - Valor [int] = %d",(pb+i),*(b+i));
+    	printf("\n");
+  	}
+  	printf("\n");
+  	
+  	for(i=0;i<4;i++){  		
+    	printf(" Endereco [float] = %d - Valor [float] = %lf",(pc+i),*(c+i));
+    	printf("\n");
+  	}
+  	printf("\n");
+  	
+  	for(i=0;i<4;i++){  			
+    	printf(" Endereco [double] = %d - Valor [double] = %f",(pd+i),*(d+i));
+    	printf("\n");
+  	}
+  	printf("\n");  
+
+  
+  return 0;
+}
+
+
+------ RESULTADO --------
+ Endereco [char] = 4092 - Valor [char] = j
+ Endereco [char] = 4093 - Valor [char] = o
+ Endereco [char] = 4094 - Valor [char] = a
+ Endereco [char] = 4095 - Valor [char] = o
+
+ Endereco [int] = 4092 - Valor [int] = 1
+ Endereco [int] = 4096 - Valor [int] = 2
+ Endereco [int] = 4100 - Valor [int] = 3
+ Endereco [int] = 4104 - Valor [int] = 4
+
+ Endereco [float] = 4092 - Valor [float] = 1.200000
+ Endereco [float] = 4096 - Valor [float] = 2.300000
+ Endereco [float] = 4100 - Valor [float] = 3.100000
+ Endereco [float] = 4104 - Valor [float] = 3.300000
+
+ Endereco [double] = 4092 - Valor [double] = 3219.000000
+ Endereco [double] = 4100 - Valor [double] = 100.300000
+ Endereco [double] = 4108 - Valor [double] = 2013.233000
+ Endereco [double] = 4116 - Valor [double] = 3000.000000
+
+
+OU SEJA, QUANDO COMPARAMOS COM O RESULTADO DA QUESTÃO ANTERIOR, PERCEBEMOS QUE A VARIÁVEL INT OCUPA UM ESPAÇO DE 4 BYTES E NÃO 2 BYTES COMO FOI PROPOSTO.
+AS DEMAIS VARIÁVEIS OCUPAM OS MESMOS BYTES DA QUESTÃO ANTERIOR. 
+
+
+
+

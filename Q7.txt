@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main(void){
+  int mat[4] = {1,2,3,4};
+  int *p, x; 
+  p = mat + 1;  // CERTO
+  p = mat++;    // ERRADO -- JUSTIFICAR???
+  p = ++mat;    // ERRADO -- JUSTIFICAR???
+  x = (*mat)++; // CERTO
+  return 0;
+}

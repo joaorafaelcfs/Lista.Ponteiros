@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+   
+   // nessa função, o qsort exige que seja fornecido dois ponteiros (*a e *b) para const void...
+   // a expressão retorna uma subtração de dois numeros que estão sendo comparados... ou seja se for retornado
+   // um valor x<0, isto é, b<a, portanto, a função coloca b antes de a no momento da ordenação
+}
+
+int main () {
+   int n, i;   
+   printf("Digite qnts numeros: \n");
+   scanf("%d", &n); // Quantidade de números que o usuário quer para fazer a ordenação
+   int p[100]; 
+   for( i = 0 ; i < n; i++ ) {
+   	  p[i] = rand()%100; // gerando números aleatórios
+      printf("%d ", p[i]);
+   }
+
+   qsort(p, n, sizeof(int), cmpfunc); 
+   // o primeiro elemento da nossa função qsort recebe os elementos a serem ordenados
+   // o segundo, recebe a quantidade de valores que vão ser ordenados... nesse caso, recebe n valores (depende do usuário)
+   // o terceiro, vai receber o tamanho de cada elemento, nesse caso, são valores inteiros.
+   // o quarto elemento é a função de comparação.
+
+   printf(" \n Colocando em ordem crescente ... \n");
+   for( i = 0 ; i < n; i++ ) {   
+      printf("%d ", p[i]);
+   }
+   return(0);
+}
